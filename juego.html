@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MateJugando - Jugar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --color-fondo: #f3f7ff;
+      --color-primario: #2563eb;
+      --color-secundario: #10b981;
+      --color-acento: #f59e0b;
+      --color-texto: #1f2933;
+      --color-blanco: #ffffff;
+      --color-error: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #e0f2fe, #eef2ff 40%, #f9fafb 100%);
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      color: var(--color-blanco);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #facc15, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
+    }
+
+    .logo-text h1 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--color-blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.35);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .game-wrapper {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .game-info {
+      text-align: center;
+    }
+
+    .game-info h2 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      color: #111827;
+    }
+
+    .game-info p {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(16, 185, 129, 0.1);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .tip-box {
+      margin: 0 auto;
+      margin-top: 0.5rem;
+      max-width: 360px;
+      padding: 0.7rem 0.9rem;
+      border-radius: 0.9rem;
+      background: rgba(59, 130, 246, 0.06);
+      border: 1px dashed rgba(37, 99, 235, 0.4);
+      font-size: 0.85rem;
+      color: #1f2937;
+    }
+
+    .tip-box strong {
+      color: #1d4ed8;
+    }
+
+    .game-card {
+      background: var(--color-blanco);
+      border-radius: 1.3rem;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge-level {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(245, 158, 11, 0.12);
+      color: #b45309;
+      border: 1px solid rgba(245, 158, 11, 0.7);
+    }
+
+    .score-box {
+      display: flex;
+      gap: 0.7rem;
+      font-size: 0.85rem;
+      align-items: center;
+    }
+
+    .score-tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(37, 99, 235, 0.1);
+      color: #1d4ed8;
+      border: 1px solid rgba(37, 99, 235, 0.4);
+    }
+
+    .stars {
+      font-size: 1rem;
+    }
+
+    .question-box {
+      text-align: center;
+      padding: 0.75rem 0.9rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(16, 185, 129, 0.12));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .question-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #4b5563;
+      margin-bottom: 0.15rem;
+    }
+
+    .question-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .question-text span.op {
+      color: var(--color-primario);
+    }
+
+    .question-text span.eq {
+      color: var(--color-secundario);
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .input-row label {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .answer-input {
+      width: 90px;
+      padding: 0.45rem 0.5rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      text-align: center;
+      font-size: 1.05rem;
+      outline: none;
+      transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .answer-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .buttons-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--color-primario);
+      color: var(--color-blanco);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-secondary {
+      background: var(--color-blanco);
+      color: var(--color-primario);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: #eff6ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
+    }
+
+    .feedback {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      min-height: 1.3rem;
+    }
+
+    .feedback.correcto {
+      color: #047857;
+    }
+
+    .feedback.incorrecto {
+      color: var(--color-error);
+    }
+
+    .mini-stats {
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    footer {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Responsivo */
+    @media (max-width: 850px) {
+      .game-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      .game-info h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <h1>MateJugando</h1>
+          <span>Juega y practica matemáticas</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="juego.html">Jugar ahora</a></li>
+          <li><a href="instrucciones.html">Instrucciones</a></li>
+          <li><a href="creditos.html">Créditos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="game-wrapper">
+      <!-- Columna izquierda: explicación breve para niños -->
+      <section class="game-info">
+        <h2>¡Hora de jugar con los números! 🎲</h2>
+        <p>
+          Resuelve las operaciones que aparecen en la tarjeta de juego.
+          Escribe tu respuesta y haz clic en <strong>“Comprobar”</strong>.
+          Si aciertas, ganas puntos y estrellas. Si te equivocas, no pasa nada:
+          vuelve a intentarlo y aprende del error.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Suma y resta</span>
+          <span class="pill">Puntaje en vivo</span>
+          <span class="pill">Retroalimentación inmediata</span>
+        </div>
+
+        <div class="tip-box">
+          <strong>Tip para el aula:</strong>
+          el docente puede pedir que los estudiantes expliquen en voz alta cómo
+          pensaron la respuesta antes de comprobarla.
+        </div>
+      </section>
+
+      <!-- Columna derecha: juego funcional -->
+      <section class="game-card" aria-label="Juego de operaciones básicas">
+        <div class="game-header">
+          <span class="badge-level">Nivel 1 · Operaciones básicas</span>
+          <div class="score-box">
+            <span class="score-tag">
+              Puntos: <span id="score">0</span>
+            </span>
+            <span class="stars" id="stars">⭐</span>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <div class="question-label">Reto matemático</div>
+          <div class="question-text">
+            <span id="numberA">0</span>
+            <span class="op" id="operator">+</span>
+            <span id="numberB">0</span>
+            <span class="eq">=</span>
+            <span>?</span>
+          </div>
+
+          <div class="input-row">
+            <label for="answerInput">Tu respuesta:</label>
+            <input
+              type="number"
+              id="answerInput"
+              class="answer-input"
+              placeholder="0"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="buttons-row">
+            <button class="btn btn-primary" id="checkBtn">
+              ✔ Comprobar
+            </button>
+            <button class="btn btn-secondary" id="newBtn">
+              🔄 Nueva operación
+            </button>
+          </div>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="mini-stats">
+          Preguntas respondidas:
+          <span id="answered">0</span> ·
+          Correctas:
+          <span id="correct">0</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>MateJugando – Juego de operaciones básicas para primaria.</span>
+      <span>Uso educativo · Proyecto UNAD.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Variables de estado del juego
+    let numeroA = 0;
+    let numeroB = 0;
+    let operador = "+";
+    let respuestaCorrecta = 0;
+
+    let puntaje = 0;
+    let respondidas = 0;
+    let correctas = 0;
+
+    const numberAEl = document.getElementById("numberA");
+    const numberBEl = document.getElementById("numberB");
+    const operatorEl = document.getElementById("operator");
+    const scoreEl = document.getElementById("score");
+    const answeredEl = document.getElementById("answered");
+    const correctEl = document.getElementById("correct");
+    const starsEl = document.getElementById("stars");
+    const feedbackEl = document.getElementById("feedback");
+    const answerInput = document.getElementById("answerInput");
+    const checkBtn = document.getElementById("checkBtn");
+    const newBtn = document.getElementById("newBtn");
+
+    function generarOperacion() {
+      // Números pequeños, entre 0 y 20
+      numeroA = Math.floor(Math.random() * 21);
+      numeroB = Math.floor(Math.random() * 21);
+
+      // Elegir aleatoriamente suma o resta
+      if (Math.random() < 0.5) {
+        operador = "+";
+        respuestaCorrecta = numeroA + numeroB;
+      } else {
+        // Para evitar resultados negativos en la resta, ordenamos
+        if (numeroB > numeroA) {
+          [numeroA, numeroB] = [numeroB, numeroA];
+        }
+        operador = "-";
+        respuestaCorrecta = numeroA - numeroB;
+      }
+
+      // Pintar en pantalla
+      numberAEl.textContent = numeroA;
+      numberBEl.textContent = numeroB;
+      operatorEl.textContent = operador;
+
+      feedbackEl.textContent = "";
+      feedbackEl.className = "feedback";
+      answerInput.value = "";
+      answerInput.focus();
+    }
+
+    function actualizarEstadisticas() {
+      scoreEl.textContent = puntaje;
+      answeredEl.textContent = respondidas;
+      correctEl.textContent = correctas;
+
+      // Estrellas según puntaje
+      if (puntaje <= 0) {
+        starsEl.textContent = "⭐";
+      } else if (puntaje < 5) {
+        starsEl.textContent = "⭐✨";
+      } else if (puntaje < 10) {
+        starsEl.textContent = "⭐⭐✨";
+      } else {
+        starsEl.textContent = "⭐⭐⭐✨";
+      }
+    }
+
+    function comprobarRespuesta() {
+      const valor = answerInput.value.trim();
+      if (valor === "") {
+        feedbackEl.textContent = "Escribe una respuesta antes de comprobar.";
+        feedbackEl.className = "feedback incorrecto";
+        answerInput.focus();
+        return;
+      }
+
+      const respuesta = Number(valor);
+      respondidas++;
+
+      if (respuesta === respuestaCorrecta) {
+        puntaje += 1;
+        correctas++;
+        feedbackEl.textContent = "¡Muy bien! 🎉 Respuesta correcta.";
+        feedbackEl.className = "feedback correcto";
+      } else {
+        puntaje -= 0.5;
+        feedbackEl.textContent =
+          "No es correcto. La respuesta correcta era " + respuestaCorrecta + ". ¡Sigue intentando!";
+        feedbackEl.className = "feedback incorrecto";
+      }
+
+      actualizarEstadisticas();
+    }
+
+    // Eventos
+    checkBtn.addEventListener("click", comprobarRespuesta);
+    newBtn.addEventListener("click", generarOperacion);
+
+    answerInput.addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        comprobarRespuesta();
+      }
+    });
+
+    // Inicializar juego
+    generarOperacion();
+    actualizarEstadisticas();
+  </script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MateJugando: Aprendamos matemáticas de forma divertida</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Recurso educativo digital para aprender matemáticas básicas de forma divertida mediante juegos y retos interactivos." />
+
+  <style>
+    :root {
+      --color-fondo: #f3f7ff;
+      --color-primario: #2563eb;
+      --color-secundario: #10b981;
+      --color-acento: #f59e0b;
+      --color-texto: #1f2933;
+      --color-blanco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #e0f2fe, #eef2ff 40%, #f9fafb 100%);
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      color: var(--color-blanco);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #facc15, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
+    }
+
+    .logo-text h1 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--color-blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.35);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 2.1rem;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+
+    .hero-text h2 span {
+      color: var(--color-primario);
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #1d4ed8;
+      border: 1px solid rgba(37, 99, 235, 0.3);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--color-primario);
+      color: var(--color-blanco);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-secondary {
+      background: var(--color-blanco);
+      color: var(--color-primario);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: #eff6ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-footnote {
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .hero-footnote strong {
+      color: #111827;
+    }
+
+    .card {
+      background: var(--color-blanco);
+      border-radius: 1.2rem;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+    }
+
+    .pill {
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(16, 185, 129, 0.09);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+    }
+
+    .levels {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .level-tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.08);
+      color: #b45309;
+      border: 1px dashed rgba(245, 158, 11, 0.6);
+    }
+
+    .summary-list {
+      list-style: none;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .summary-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .summary-bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--color-secundario);
+      margin-top: 0.3rem;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+    }
+
+    .info-item strong {
+      display: block;
+      font-size: 0.78rem;
+      color: #111827;
+    }
+
+    footer {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner span {
+      display: block;
+    }
+
+    .footer-links a {
+      color: #2563eb;
+      text-decoration: none;
+      margin-left: 0.5rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsivo */
+    @media (max-width: 850px) {
+      .container {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        justify-content: flex-start;
+      }
+
+      .hero-text h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <h1>MateJugando</h1>
+          <span>Matemáticas básicas con juegos y retos</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <!-- Estas páginas las crearemos después -->
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="juego.html">Jugar ahora</a></li>
+          <li><a href="instrucciones.html">Instrucciones</a></li>
+          <li><a href="creditos.html">Créditos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <!-- Columna izquierda: texto principal -->
+      <div class="hero-text">
+        <h2>
+          Matemáticas <span>divertidas</span><br />
+          para aprender haciendo
+        </h2>
+        <p>
+          <strong>MateJugando</strong> es un recurso educativo digital pensado para estudiantes de
+          básica primaria, especialmente en contextos rurales, que necesitan fortalecer sus
+          habilidades en suma y resta a través de juegos, retos y situaciones de la vida cotidiana.
+        </p>
+        <div class="badges">
+          <span class="badge">Aprendizaje activo</span>
+          <span class="badge">Juego y reto</span>
+          <span class="badge">Contexto rural</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="juego.html">
+            🚀 Jugar ahora
+          </a>
+          <a class="btn btn-secondary" href="instrucciones.html">
+            📘 Ver instrucciones
+          </a>
+        </div>
+
+        <p class="hero-footnote">
+          <strong>Propósito del recurso:</strong> dinamizar la clase de matemáticas,
+          aumentar la motivación y facilitar la comprensión de las operaciones básicas
+          mediante actividades interactivas.
+        </p>
+      </div>
+
+      <!-- Columna derecha: tarjeta resumen tipo ficha LabINNOVA -->
+      <aside class="card">
+        <div class="card-header">
+          <h3 style="font-size: 1rem;">Ficha del recurso educativo</h3>
+          <span class="pill">Recurso digital</span>
+        </div>
+
+        <p class="tagline">Información básica del recurso MateJugando.</p>
+
+        <div class="levels">
+          <span class="level-tag">Nivel: Básica primaria</span>
+          <span class="level-tag">Área: Matemáticas</span>
+        </div>
+
+        <ul class="summary-list">
+          <li>
+            <span class="summary-bullet"></span>
+            <span>Trabaja operaciones básicas de suma y resta a través de retos y mini juegos.</span>
+          </li>
+          <li>
+            <span class="summary-bullet"></span>
+            <span>Promueve el aprendizaje activo, la participación y el trabajo colaborativo.</span>
+          </li>
+          <li>
+            <span class="summary-bullet"></span>
+            <span>Integra situaciones del contexto rural para darle sentido a las matemáticas.</span>
+          </li>
+        </ul>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Estudiante autora</strong>
+            <span>Darly Yurleny Rojas Yanguma</span>
+          </div>
+          <div class="info-item">
+            <strong>Programa</strong>
+            <span>Licenciatura en Matemáticas</span>
+          </div>
+          <div class="info-item">
+            <strong>Curso</strong>
+            <span>Investigación educativa y pedagógica</span>
+          </div>
+          <div class="info-item">
+            <strong>Docente acompañante</strong>
+            <span>Rubén Darío Velasco Urueña</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>
+        Universidad Nacional Abierta y a Distancia – UNAD · Escuela de Ciencias de la Educación
+      </span>
+      <div class="footer-links">
+        <span>Recurso: MateJugando - Por: Darly Yurleny Rojas Yanguma</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

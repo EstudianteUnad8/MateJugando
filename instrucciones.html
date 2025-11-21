@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MateJugando - Instrucciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --color-fondo: #f3f7ff;
+      --color-primario: #2563eb;
+      --color-secundario: #10b981;
+      --color-acento: #f59e0b;
+      --color-texto: #1f2933;
+      --color-blanco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #e0f2fe, #eef2ff 40%, #f9fafb 100%);
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      color: var(--color-blanco);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #facc15, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
+    }
+
+    .logo-text h1 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--color-blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.35);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .content-wrapper {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1.4rem;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-title h2 {
+      font-size: 1.8rem;
+      color: #111827;
+      margin-bottom: 0.25rem;
+    }
+
+    .page-title p {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 0.8rem 0 1.1rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(16, 185, 129, 0.1);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .sections-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .box {
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    .box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .box h3 span.icon {
+      font-size: 1.2rem;
+    }
+
+    .box p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .box ul {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .box ul li {
+      font-size: 0.88rem;
+      margin-bottom: 0.35rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .bullet {
+      margin-top: 0.35rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--color-secundario);
+    }
+
+    .highlight {
+      background: rgba(59, 130, 246, 0.06);
+      border-radius: 0.8rem;
+      padding: 0.6rem 0.7rem;
+      border: 1px dashed rgba(37, 99, 235, 0.4);
+      font-size: 0.85rem;
+      color: #1f2937;
+      margin-top: 0.4rem;
+    }
+
+    .highlight strong {
+      color: #1d4ed8;
+    }
+
+    .steps {
+      margin-top: 0.4rem;
+    }
+
+    .steps ol {
+      margin-left: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .steps ol li {
+      margin-bottom: 0.35rem;
+    }
+
+    .bottom-note {
+      margin-top: 1.1rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    .bottom-note strong {
+      color: #111827;
+    }
+
+    footer {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Responsivo */
+    @media (max-width: 850px) {
+      main {
+        padding: 1rem;
+      }
+
+      .sections-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        justify-content: flex-start;
+      }
+
+      .content-wrapper {
+        padding: 1.2rem 1.1rem;
+      }
+
+      .page-title h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <h1>MateJugando</h1>
+          <span>Guía para docentes y estudiantes</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="juego.html">Jugar ahora</a></li>
+          <li><a href="instrucciones.html">Instrucciones</a></li>
+          <li><a href="creditos.html">Créditos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="content-wrapper">
+      <div class="page-title">
+        <h2>Instrucciones de uso</h2>
+        <p>
+          Aquí encontrarás cómo usar el recurso <strong>MateJugando</strong> en el aula y en casa,
+          paso a paso, de manera sencilla.
+        </p>
+      </div>
+
+      <div class="pill-row">
+        <span class="pill">Docente</span>
+        <span class="pill">Estudiante</span>
+        <span class="pill">Aprendizaje activo</span>
+      </div>
+
+      <div class="sections-grid">
+        <!-- Columna izquierda: para el docente -->
+        <section class="box">
+          <h3><span class="icon">👩‍🏫</span> Uso sugerido para el docente</h3>
+          <p>
+            Este recurso está pensado como apoyo para una clase de matemáticas donde se
+            trabajan <strong>sumas y restas</strong> desde situaciones cercanas al contexto de los
+            estudiantes. Se recomienda:
+          </p>
+          <ul>
+            <li>
+              <span class="bullet"></span>
+              <span>Presentar primero un ejemplo en el tablero y relacionarlo con una situación de la vereda o comunidad.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Organizar a los estudiantes en parejas o pequeños grupos para que dialoguen sobre la respuesta antes de escribirla en el juego.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Invitar a algunos estudiantes a explicar en voz alta cómo pensaron la solución, aunque se hayan equivocado.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Usar el puntaje y las estrellas no como competencia, sino como motivación para seguir practicando.</span>
+            </li>
+          </ul>
+          <div class="highlight">
+            <strong>Sugerencia didáctica:</strong>
+            después de varias rondas en el juego, realice una pequeña reflexión con el grupo:
+            ¿qué operaciones fueron más fáciles?, ¿en cuáles tuvieron más dificultades?
+          </div>
+        </section>
+
+        <!-- Columna derecha: para el estudiante -->
+        <section class="box">
+          <h3><span class="icon">🧒</span> Instrucciones para el estudiante</h3>
+          <p>
+            Sigue estos pasos para jugar con <strong>MateJugando</strong> y practicar tus
+            habilidades con los números:
+          </p>
+
+          <div class="steps">
+            <ol>
+              <li>Haz clic en el botón <strong>“Jugar ahora”</strong> del menú o desde la página de inicio.</li>
+              <li>Observa con atención la operación que aparece en la tarjeta de juego (puede ser suma o resta).</li>
+              <li>Piensa la respuesta. Puedes usar tus dedos, dibujos en el cuaderno o contar en voz baja.</li>
+              <li>Escribe el resultado en la casilla <strong>“Tu respuesta”</strong>.</li>
+              <li>Presiona el botón <strong>“Comprobar”</strong>.</li>
+              <li>Si respondes bien, ganarás puntos y verás un mensaje de felicitación.</li>
+              <li>Si te equivocas, el juego te mostrará la respuesta correcta para que aprendas.</li>
+              <li>Puedes presionar <strong>“Nueva operación”</strong> para seguir practicando más retos.</li>
+            </ol>
+          </div>
+
+          <div class="highlight">
+            <strong>Recuerda:</strong>
+            equivocarse también hace parte del aprendizaje. Lo importante es intentarlo,
+            preguntar y seguir practicando.
+          </div>
+        </section>
+      </div>
+
+      <p class="bottom-note">
+        <strong>Propósito del recurso:</strong>
+        apoyar el aprendizaje activo de las matemáticas básicas en estudiantes de primaria,
+        fortaleciendo la motivación y la comprensión a través del juego.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>MateJugando – Instrucciones de uso.</span>
+      <span>Licenciatura en Matemáticas · UNAD.</span>
+    </div>
+  </footer>
+</body>
+</html>

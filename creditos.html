@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MateJugando - Créditos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --color-fondo: #f3f7ff;
+      --color-primario: #2563eb;
+      --color-secundario: #10b981;
+      --color-acento: #f59e0b;
+      --color-texto: #1f2933;
+      --color-blanco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #e0f2fe, #eef2ff 40%, #f9fafb 100%);
+      color: var(--color-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      color: var(--color-blanco);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #facc15, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
+    }
+
+    .logo-text h1 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--color-blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.35);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .content-wrapper {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1.4rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 0.5rem;
+      color: #111827;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 1.3rem;
+    }
+
+    .credit-box {
+      text-align: left;
+      margin: 0 auto;
+      max-width: 500px;
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      margin-bottom: 1.3rem;
+    }
+
+    .credit-item {
+      margin-bottom: 0.7rem;
+    }
+
+    .credit-item strong {
+      display: block;
+      color: #111827;
+      font-size: 0.95rem;
+    }
+
+    .credit-item span {
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .description {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      padding: 1rem 1.1rem;
+      border-radius: 1rem;
+      background: rgba(59, 130, 246, 0.06);
+      border: 1px dashed rgba(37, 99, 235, 0.4);
+      color: #1f2937;
+      margin-bottom: 1.4rem;
+    }
+
+    .description strong {
+      color: #1d4ed8;
+    }
+
+    footer {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Responsivo */
+    @media (max-width: 640px) {
+      .content-wrapper {
+        padding: 1.2rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <h1>MateJugando</h1>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="juego.html">Jugar ahora</a></li>
+          <li><a href="instrucciones.html">Instrucciones</a></li>
+          <li><a href="creditos.html">Créditos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="content-wrapper">
+      <h2>Créditos del Recurso</h2>
+      <p class="subtitle">Información del proyecto educativo y sus participantes</p>
+
+      <div class="credit-box">
+        <div class="credit-item">
+          <strong>Nombre del recurso:</strong>
+          <span>MateJugando: Aprendamos matemáticas de forma divertida</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Autora del recurso:</strong>
+          <span>Darly Yurleny Rojas Yanguma</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Programa académico:</strong>
+          <span>Licenciatura en Matemáticas</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Curso:</strong>
+          <span>Investigación educativa y pedagógica</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Docente acompañante:</strong>
+          <span>Rubén Darío Velasco Urueña</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Institución:</strong>
+          <span>Universidad Nacional Abierta y a Distancia – UNAD</span>
+        </div>
+
+        <div class="credit-item">
+          <strong>Año:</strong>
+          <span>2025</span>
+        </div>
+      </div>
+
+      <div class="description">
+        <strong>MateJugando</strong> es un recurso educativo digital diseñado para fortalecer
+        las habilidades matemáticas básicas de estudiantes de primaria mediante actividades
+        lúdicas, interactivas y contextualizadas. Forma parte del proyecto de intervención
+        pedagógica desarrollado en el curso de Investigación Educativa y Pedagógica, aplicando
+        el enfoque de aprendizaje activo y el método de investigación acción.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Recurso educativo · UNAD · MateJugando</span>
+      <span>Licenciatura en Matemáticas</span>
+    </div>
+  </footer>
+</body>
+</html>
